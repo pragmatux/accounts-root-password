@@ -1,0 +1,23 @@
+#!/bin/sh -e
+
+OPERATION="$1"
+EXISTING="$2"
+
+# On the first install
+if [ "$OPERATION" = configure -a -z "$EXISTING" ]; then
+	# If the root password has not been set, set a default
+	if [ -z "$(grep ^root: /etc/shadow | cut -d: -f2)" ]; then
+		echo root:password | chpasswd
+	fi
+
+	# If the password was last set on day 0 due to a clock problem, change
+	# the day to 1 to avoid the special meaning of lastday = 0, which is
+	# that the password must be changed on the next login.
+	if [ "$(grep ^root: /etc/shadow | cut -d: -f3)" = 0 ]; then
+		chage --lastday 1 root
+	fi
+fi
+
+#DEBHELPER#
+
+exit 0

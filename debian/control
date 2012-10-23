@@ -1,0 +1,14 @@
+Source: accounts-root-password
+Section: config
+Priority: extra
+Maintainer: Ryan Kuester <rkuester@insymbols.com>
+Build-Depends: debhelper (>= 7.0.50~)
+Standards-Version: 3.9.1
+Vcs-Git: git://git.pragmatux.org/accounts-root-password.git
+
+Package: accounts-root-password
+Architecture: all
+Depends: baseconfig-ptux, ${misc:Depends}
+Description: Default password for root
+ This package sets a default password of "password" for the root account.
+ During upgrades, it will not touch a root password which is already set.
