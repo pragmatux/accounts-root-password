@@ -8,7 +8,7 @@ Vcs-Git: git://git.pragmatux.org/accounts-root-password.git
 
 Package: accounts-root-password
 Architecture: all
-Depends: baseconfig-ptux, ${misc:Depends}
+Depends: baseconfig-ptux, libpam-runtime, ${misc:Depends}
 Description: Default password for root
  This package sets a default password of "password" for the root account.
  During upgrades, it will not touch a root password which is already set.
